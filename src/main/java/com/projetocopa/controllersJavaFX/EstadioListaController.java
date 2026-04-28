@@ -3,44 +3,40 @@ package com.projetocopa.controllersJavaFX;
 import java.io.IOException;
 import java.util.Optional;
 
-import com.projetocopa.model.Selecao;
+import com.projetocopa.model.Estadio;
+import com.projetocopa.repository.EstadioRepository;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class SelecaoController {
+public class EstadioListaController {
+	@FXML
+    private TableView<Estadio> tabela;
 
     @FXML
-    private TableView<Selecao> tabela;
-
+    private TableColumn<Estadio, String> colNome;
+    
     @FXML
-    private TableColumn<Selecao, String> colNome;
+    private TableColumn<Estadio, String> colCidade;
 
-    private ObservableList<Selecao> dados;
 
     public void initialize() {
 
         // ligação das colunas
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        colCidade.setCellValueFactory(new PropertyValueFactory<>("cidade"));
 
-        // dados iniciais
-        dados = FXCollections.observableArrayList(
-                new Selecao("Brasil"),
-                new Selecao("Argentina")
-        );
-
-        tabela.setItems(dados);
+        //Atribui os dados à tabela
+        tabela.setItems(EstadioRepository.getEstadios());
     }
 
     // =========================
@@ -48,36 +44,36 @@ public class SelecaoController {
     // =========================
 
     @FXML
-    public void novaSelecao() {
+    public void novoEstadio() {
         abrirFormulario(null);
     }
 
     @FXML
-    public void editarSelecao() {
-        Selecao selecionada = tabela.getSelectionModel().getSelectedItem();
+    public void editarEstadio() {
+        Estadio selecionado = tabela.getSelectionModel().getSelectedItem();
 
-        if (selecionada == null) {
-            mostrarAlerta("Selecione um item para editar");
+        if (selecionado == null) {
+            mostrarAlerta("Selecione um estádio para editar");
             return;
         }
 
-        abrirFormulario(selecionada);
+        abrirFormulario(selecionado);
     }
     
     @FXML
-    public void excluirSelecao() {
-        Selecao selecionada = tabela.getSelectionModel().getSelectedItem();
+    public void excluirEstadio() {
+        Estadio selecionado = tabela.getSelectionModel().getSelectedItem();
 
-        if (selecionada == null) {
-            mostrarAlerta("Selecione um item para excluir");
+        if (selecionado == null) {
+            mostrarAlerta("Selecione um estádio para excluir");
             return;
         }
         
-        Alert alert = new Alert(AlertType.CONFIRMATION, "Deseja realmente excluir a seleção " + selecionada.getNome() + "?");
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Deseja realmente excluir o estádio " + selecionado.getNome() + "?");
         
         Optional<ButtonType> escolha = alert.showAndWait();
         if (escolha.isPresent() && escolha.get() == ButtonType.OK) {
-        	dados.remove(selecionada);			
+        	EstadioRepository.remover(selecionado);	
 		}
     }
 
@@ -85,10 +81,10 @@ public class SelecaoController {
     // FORMULÁRIO MODAL
     // =========================
 
-    private void abrirFormulario(Selecao selecao) {
+    private void abrirFormulario(Estadio estadio) {
         try {
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/fxml/selecao-form.fxml")
+                    getClass().getResource("/fxml/estadio-form.fxml")
             );
 
             Stage stage = new Stage();
@@ -101,14 +97,14 @@ public class SelecaoController {
             stage.initOwner(tabela.getScene().getWindow());
 
             //pega controller do form
-            SelecaoFormController controller = loader.getController();
-            controller.setSelecaoController(this);
+            EstadioFormController controller = loader.getController();
+            controller.setListaController(this);
 
-            if (selecao != null) {
-                controller.setSelecao(selecao);
+            if (estadio != null) {
+                controller.setEstadio(estadio);
             }
 
-            stage.setTitle("Cadastro de Seleção");
+            stage.setTitle("Cadastro de Estádio");
             stage.setResizable(false);
 
             //ESSENCIAL: trava até fechar
@@ -123,8 +119,8 @@ public class SelecaoController {
     // MÉTODOS DE APOIO
     // =========================
 
-    public void adicionarSelecao(Selecao selecao) {
-        dados.add(selecao);
+    public void adicionarEstadio(Estadio estadio) {
+    	EstadioRepository.adicionar(estadio);
     }
 
     public void atualizarTabela() {

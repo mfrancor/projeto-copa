@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="10"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.projetocopa.controllersJavaFX.PartidaListaController">
+
+	<padding>
+        <Insets top="10" right="10" bottom="15" left="15"/>
+    </padding>
+
+	<Label text="Lista de Partidas">
+    	<font>
+	        <Font size="14"/>
+	    </font>
+    </Label>
+
+    <HBox spacing="10">
+        <Button text="Nova Partida" onAction="#novaPartida"/>
+        <Button text="Excluir" onAction="#excluirPartida"/>
+    </HBox>
+
+    <TableView fx:id="tabela">
+        <columns>
+            <TableColumn fx:id="colDescricao" text="Partida" prefWidth="200.0"/>
+            <TableColumn fx:id="colEstadio" text="Estádio" prefWidth="250.0"/>
+            <TableColumn fx:id="colData" text="Data" prefWidth="100.0"/>
+        </columns>
+    </TableView>
+</VBox>
+

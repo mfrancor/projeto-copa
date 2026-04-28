@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.Insets?>
-
+<?import javafx.scene.text.Font?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.projetocopa.controllersJavaFX.SelecaoFormController"
@@ -15,8 +15,13 @@
         <Insets top="10" right="10" bottom="15" left="15"/>
     </padding>
     
-    <Label text="Nome de Seleção"/>
-
+    <Label text="Cadastro de Seleção">
+    	<font>
+	        <Font size="14"/>
+	    </font>
+    </Label>
+    
+    <Label text="Nome"/>
     <TextField fx:id="txtNome" promptText="Nome"/>
 
     <Button text="Salvar" onAction="#salvar" defaultButton="true"/>

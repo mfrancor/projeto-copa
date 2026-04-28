@@ -10,11 +10,11 @@ public class SelecaoFormController {
     @FXML
     private TextField txtNome;
 
-    private SelecaoController selecaoController;
+    private SelecaoListaController listaController;
     private Selecao selecaoEdicao;
 
-    public void setSelecaoController(SelecaoController controller) {
-        this.selecaoController = controller;
+    public void setListaController(SelecaoListaController controller) {
+        this.listaController = controller;
     }
 
     //usado quando for editar
@@ -30,12 +30,12 @@ public class SelecaoFormController {
         if (selecaoEdicao == null) {
             // novo
             Selecao nova = new Selecao(nome);
-            selecaoController.adicionarSelecao(nova);
+            listaController.adicionarSelecao(nova);
 
         } else {
             // edição
             selecaoEdicao.setNome(nome);
-            selecaoController.atualizarTabela();
+            listaController.atualizarTabela();
         }
 
         fecharJanela();

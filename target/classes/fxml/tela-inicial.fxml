@@ -10,8 +10,8 @@
         <MenuBar>
             <Menu text="Cadastros">
                 <MenuItem text="Seleções" onAction="#abrirSelecoes"/>
-                <MenuItem text="Partidas" onAction="#abrirPartidas"/>
                 <MenuItem text="Estádios" onAction="#abrirEstadios"/>
+                <MenuItem text="Partidas" onAction="#abrirPartidas"/>
             </Menu>
         </MenuBar>
     </top>

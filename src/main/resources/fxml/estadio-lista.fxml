@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.projetocopa.controllersJavaFX.EstadioListaController"
+      spacing="10">
+      
+    <padding>
+        <Insets top="10" right="10" bottom="15" left="15"/>
+    </padding>
+
+    <Label text="Lista de Estádios">
+    	<font>
+	        <Font size="14"/>
+	    </font>
+    </Label>
+
+    <HBox spacing="10">
+	    <Button text="Novo Estádio" onAction="#novoEstadio"/>
+	    <Button text="Editar" onAction="#editarEstadio"/>
+	    <Button text="Excluir" onAction="#excluirEstadio"/>
+	</HBox>
+
+    <TableView fx:id="tabela">
+        <columns>
+            <TableColumn fx:id="colNome" text="Nome" prefWidth="300.0"/>
+            <TableColumn fx:id="colCidade" text="Cidade" prefWidth="300.0"/>
+        </columns>
+    </TableView>
+
+</VBox>

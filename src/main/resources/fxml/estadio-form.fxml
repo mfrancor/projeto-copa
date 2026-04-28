@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.projetocopa.controllersJavaFX.SelecaoFormController"
+      fx:controller="com.projetocopa.controllersJavaFX.EstadioFormController"
       spacing="10"      
       prefWidth="300.0"
       alignment="CENTER_LEFT">
@@ -15,7 +15,7 @@
         <Insets top="10" right="10" bottom="15" left="15"/>
     </padding>
     
-    <Label text="Cadastro de Seleção">
+    <Label text="Cadastro de Estádio">
     	<font>
 	        <Font size="14"/>
 	    </font>
@@ -23,7 +23,11 @@
     
     <Label text="Nome"/>
     <TextField fx:id="txtNome" promptText="Nome"/>
-
+    
+    <Label text="Cidade"/>
+    <TextField fx:id="txtCidade" promptText="Cidade"/>
+    
+    
     <Button text="Salvar" onAction="#salvar" defaultButton="true"/>
 
 </VBox>
