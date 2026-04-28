@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.projetocopa.controllersJavaFX.TelaInicialController">
+
+    <top>
+        <MenuBar>
+            <Menu text="Cadastros">
+                <MenuItem text="Seleções" onAction="#abrirSelecoes"/>
+                <MenuItem text="Partidas" onAction="#abrirPartidas"/>
+                <MenuItem text="Estádios" onAction="#abrirEstadios"/>
+            </Menu>
+        </MenuBar>
+    </top>
+
+</BorderPane>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.projetocopa.controllersJavaFX.SelecaoController"
+      spacing="10">
+
+    <Label text="Lista de Seleções"/>
+
+    <HBox spacing="10">
+	    <Button text="Nova Seleção" onAction="#novaSelecao"/>
+	    <Button text="Editar" onAction="#editarSelecao"/>
+	    <Button text="Excluir" onAction="#excluirSelecao"/>
+	</HBox>
+
+    <TableView fx:id="tabela">
+        <columns>
+            <TableColumn fx:id="colNome" text="Nome"/>
+            <TableColumn fx:id="colPais" text="País"/>
+        </columns>
+    </TableView>
+
+</VBox>
