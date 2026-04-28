@@ -14,7 +14,7 @@ public class SelecaoRepository {
         selecoes.add(new Selecao("Brasil"));
         selecoes.add(new Selecao("Argentina"));
         selecoes.add(new Selecao("França"));
-        selecoes.add(new Selecao("Potugal"));
+        selecoes.add(new Selecao("Portugal"));
     }
 
     public static ObservableList<Selecao> getSelecoes() {

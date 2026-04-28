@@ -15,12 +15,13 @@
 
 	<Label text="Lista de Partidas">
     	<font>
-	        <Font size="14"/>
+	        <Font size="16"/>
 	    </font>
     </Label>
 
     <HBox spacing="10">
         <Button text="Nova Partida" onAction="#novaPartida"/>
+        <Button text="Editar" onAction="#editarPartida"/>
         <Button text="Excluir" onAction="#excluirPartida"/>
     </HBox>
 

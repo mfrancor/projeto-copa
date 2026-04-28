@@ -1,5 +1,6 @@
 package com.projetocopa.controllersJavaFX;
 
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
@@ -39,27 +40,26 @@ public class PartidaListaController {
 
         tabela.setItems(PartidaRepository.getPartidas());
     }
+    
+    // =========================
+    // AÇÕES
+    // =========================
 
     @FXML
     public void novaPartida() {
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/fxml/partida-form.fxml"));
+        abrirFormulario(null);
+    }
+    
+    @FXML
+    public void editarPartida() {
+        Partida selecionada = tabela.getSelectionModel().getSelectedItem();
 
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initOwner(tabela.getScene().getWindow());
-
-            stage.setTitle("Cadastro de Partida");
-            stage.setResizable(false);
-
-            stage.showAndWait();
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (selecionada == null) {
+            mostrarAlerta("Selecione uma partida para editar");
+            return;
         }
+
+        abrirFormulario(selecionada);
     }
 
     @FXML
@@ -77,5 +77,61 @@ public class PartidaListaController {
         if (escolha.isPresent() && escolha.get() == ButtonType.OK) {
         	PartidaRepository.remover(selecionado);	
 		}
+    }
+    
+ // =========================
+    // FORMULÁRIO MODAL
+    // =========================
+
+    private void abrirFormulario(Partida partida) {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/fxml/partida-form.fxml")
+            );
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+
+            //torna modal (bloqueia tela atrás)
+            stage.initModality(Modality.APPLICATION_MODAL);
+
+            //vincula à janela principal (boa prática)
+            stage.initOwner(tabela.getScene().getWindow());
+
+            //pega controller do form
+            PartidaFormController controller = loader.getController();
+            controller.setListaController(this);
+
+            if (partida != null) {
+                controller.setPartida(partida);
+            }
+
+            stage.setTitle("Cadastro de Partida");
+            stage.setResizable(false);
+
+            //ESSENCIAL: trava até fechar
+            stage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    // =========================
+    // MÉTODOS DE APOIO
+    // =========================
+
+    public void adicionarPartida(Partida partida) {
+    	PartidaRepository.adicionar(partida);
+    }
+
+    public void atualizarTabela() {
+        tabela.refresh();
+    }
+
+    private void mostrarAlerta(String msg) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setContentText(msg);
+        alert.show();
     }
 }

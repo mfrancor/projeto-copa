@@ -17,7 +17,7 @@
     
     <Label text="Cadastro de Estádio">
     	<font>
-	        <Font size="14"/>
+	        <Font size="16"/>
 	    </font>
     </Label>
     

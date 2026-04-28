@@ -15,7 +15,7 @@
     
 	<Label text="Cadastro de Partida">
     	<font>
-	        <Font size="14"/>
+	        <Font size="16"/>
 	    </font>
     </Label>
     
