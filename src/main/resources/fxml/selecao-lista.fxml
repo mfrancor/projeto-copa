@@ -2,12 +2,22 @@
 
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.projetocopa.controllersJavaFX.SelecaoController"
       spacing="10">
+      
+     <padding>
+        <Insets top="10" right="10" bottom="15" left="15"/>
+    </padding>
 
-    <Label text="Lista de Seleções"/>
+    <Label text="Lista de Seleções">
+    	<font>
+	        <Font size="14"/>
+	    </font>
+    </Label>
 
     <HBox spacing="10">
 	    <Button text="Nova Seleção" onAction="#novaSelecao"/>
@@ -17,8 +27,7 @@
 
     <TableView fx:id="tabela">
         <columns>
-            <TableColumn fx:id="colNome" text="Nome"/>
-            <TableColumn fx:id="colPais" text="País"/>
+            <TableColumn fx:id="colNome" text="Nome" prefWidth="300.0"/>
         </columns>
     </TableView>
 

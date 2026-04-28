@@ -10,9 +10,6 @@ public class SelecaoFormController {
     @FXML
     private TextField txtNome;
 
-    @FXML
-    private TextField txtPais;
-
     private SelecaoController selecaoController;
     private Selecao selecaoEdicao;
 
@@ -23,26 +20,21 @@ public class SelecaoFormController {
     //usado quando for editar
     public void setSelecao(Selecao selecao) {
         this.selecaoEdicao = selecao;
-
         txtNome.setText(selecao.getNome());
-        txtPais.setText(selecao.getPais());
     }
 
     public void salvar() {
 
         String nome = txtNome.getText();
-        String pais = txtPais.getText();
 
         if (selecaoEdicao == null) {
             // novo
-            Selecao nova = new Selecao(nome, pais);
+            Selecao nova = new Selecao(nome);
             selecaoController.adicionarSelecao(nova);
 
         } else {
             // edição
             selecaoEdicao.setNome(nome);
-            selecaoEdicao.setPais(pais);
-
             selecaoController.atualizarTabela();
         }
 

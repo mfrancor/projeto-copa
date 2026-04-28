@@ -2,17 +2,23 @@
 
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
 
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.projetocopa.controllersJavaFX.SelecaoFormController"
-      spacing="10" alignment="CENTER">
+      spacing="10"      
+      prefWidth="300.0"
+      alignment="CENTER_LEFT">
 
-    <Label text="Cadastro de Seleção"/>
+	<padding>
+        <Insets top="10" right="10" bottom="15" left="15"/>
+    </padding>
+    
+    <Label text="Nome de Seleção"/>
 
     <TextField fx:id="txtNome" promptText="Nome"/>
-    <TextField fx:id="txtPais" promptText="País"/>
 
-    <Button text="Salvar" onAction="#salvar"/>
+    <Button text="Salvar" onAction="#salvar" defaultButton="true"/>
 
 </VBox>

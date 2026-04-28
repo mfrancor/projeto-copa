@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
@@ -15,5 +15,9 @@
             </Menu>
         </MenuBar>
     </top>
+    
+    <center>
+        <StackPane fx:id="conteudo"/>
+    </center>
 
 </BorderPane>

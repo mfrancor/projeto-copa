@@ -1,35 +1,54 @@
 package com.projetocopa.controllersJavaFX;
 
+import java.io.IOException;
+
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import javafx.scene.Parent;
+import javafx.scene.layout.StackPane;
 
 public class TelaInicialController {
 
-    private void abrirTela(String fxml) {
+    @FXML
+    private StackPane conteudo;
+
+    /**
+     * Método genérico para carregar telas dentro da área central
+     */
+    private void carregarTela(String fxml) {
         try {
             FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/fxml/" + fxml)
+                    getClass().getResource("/fxml/" + fxml)
             );
 
-            Stage stage = new Stage();
-            stage.setScene(new Scene(loader.load()));
-            stage.show();
+            Parent tela = loader.load();            
+            conteudo.getChildren().setAll(tela);
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    // =========================
+    // AÇÕES DO MENU
+    // =========================
+
+    @FXML
     public void abrirSelecoes() {
-        abrirTela("selecao-lista.fxml");
+        carregarTela("selecao-lista.fxml");
     }
 
+    @FXML
     public void abrirPartidas() {
-        abrirTela("partida-lista.fxml");
+        carregarTela("partida-lista.fxml");
     }
 
+    @FXML
     public void abrirEstadios() {
-        abrirTela("estadio-lista.fxml");
+        carregarTela("estadio-lista.fxml");
+    }
+    
+    public void limparConteudo() {
+        conteudo.getChildren().clear();
     }
 }
