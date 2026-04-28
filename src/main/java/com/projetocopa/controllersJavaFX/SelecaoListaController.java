@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 import com.projetocopa.model.Selecao;
+import com.projetocopa.repository.PartidaRepository;
 import com.projetocopa.repository.SelecaoRepository;
 
 import javafx.fxml.FXML;
@@ -70,7 +71,11 @@ public class SelecaoListaController {
         
         Optional<ButtonType> escolha = alert.showAndWait();
         if (escolha.isPresent() && escolha.get() == ButtonType.OK) {
-        	SelecaoRepository.remover(selecionada);	
+        	if (PartidaRepository.existePartidaComSelecao(selecionada)) {
+				mostrarAlerta("A seleção " + selecionada.getNome() + " não pode ser excluída pois existe partida cadastrada para ela.");
+			} else {
+				SelecaoRepository.remover(selecionada);	
+			}        	
 		}
     }
 

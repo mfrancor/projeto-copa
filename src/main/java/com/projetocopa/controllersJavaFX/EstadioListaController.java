@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.projetocopa.model.Estadio;
 import com.projetocopa.repository.EstadioRepository;
+import com.projetocopa.repository.PartidaRepository;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -73,7 +74,11 @@ public class EstadioListaController {
         
         Optional<ButtonType> escolha = alert.showAndWait();
         if (escolha.isPresent() && escolha.get() == ButtonType.OK) {
-        	EstadioRepository.remover(selecionado);	
+        	if (PartidaRepository.existePartidaComEstadio(selecionado)) {
+        		mostrarAlerta("O estádio " + selecionado.getNome() + " não pode ser excluído pois existe partida cadastrada para ele.");
+			} else {
+				EstadioRepository.remover(selecionado);
+			}        		
 		}
     }
 
